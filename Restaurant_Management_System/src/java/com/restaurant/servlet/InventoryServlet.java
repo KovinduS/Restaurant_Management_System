@@ -5,82 +5,77 @@
  */
 package com.restaurant.servlet;
 
+import com.restaurant.model.InventoryItems;
+import com.restaurant.service.InventoryService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
 
 /**
  *
  * @author Novaline
  */
+@WebServlet("/inventory/*")
 public class InventoryServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet InventoryServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet InventoryServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    private InventoryService inventoryService;
+    
+     @Override
+      public void init() {
+          this.inventoryService = new InventoryService();
+      }
+      
+      @Override
+      protected void doGet(HttpServletRequest request, HttpServletResponse response)
+              throws ServletException, IOException {
+          String action = request.getPathInfo();
+          
+          if (action == null || action.equals("/")) {
+              // List all inventory items
+              request.setAttribute("inventoryItems", inventoryService.getAllInventoryItems());
+              request.setAttribute("lowStockItems", inventoryService.getLowStockItems());
+              request.getRequestDispatcher("/views/inventory.jsp").forward(request, response);
+              } else if (action.equals("/new")) {
+                  // Show new inventory item form
+                  request.getRequestDispatcher("/views/new-inventory-item.jsp").forward(request, response);
+          }
+      }
+   
+   
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getPathInfo();
+        
+        if (action.equals("/create")) {
+            // Create new inventory item
+            InventoryItem item = new InventoryItem();
+            item.setItemName(request.getParameter("itemName"));
+            item.setQuantity(Double.parseDouble(request.getParameter("quantity")));
+            item.setUnit(request.getParameter("unit"));
+            item.setReorderLevel(Double.parseDouble(request.getParameter("reorderLevel")));
+            
+            boolean success = inventoryService.addInventoryItem(item);
+            if (success) {
+                response.sendRedirect(request.getContextPath() + "/inventory");
+                } else {
+                request.setAttribute("error", "Failed to add inventory item");
+                request.getRequestDispatcher("/views/new-inventory-item.jsp").forward(request, response);        
+            }
+        } else if (action.equals("/update-quantity")) {
+            // Update inventory quantity
+            int inventoryId = Integer.parseInt(request.getParameter("inventoryId"));
+            double quantity = Double.parseDouble(request.getParameter("quantity"));
+            
+            boolean success = inventoryService.updateInventoryQuantity(inventoryId, quantity);
+            response.sendRedirect(request.getContextPath() + "/inventory");
+        }
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
