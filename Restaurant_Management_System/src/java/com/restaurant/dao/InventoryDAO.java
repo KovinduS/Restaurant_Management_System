@@ -1,18 +1,18 @@
 package com.restaurant.dao;
 
 import com.restaurant.model.InventoryItems;
-import.java.sql.*;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public classmInventoryDAO {
+public class InventoryDAO {
 //Gett all inventory item
-   public list<InventoryItem> getAllInventoryItem() throws SQLException {
+   public List<InventoryItem> getAllInventoryItem() throws SQLException {
        List<InventoryItem> items = new ArrayList<>();
        String sql = "SELECT * FROM inventory ORDER BY item_name";
        
        try (Connection conn = DBConnection.getConnection();
-            Statement stmt = conn.creatstatement();
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql)){
 
             while (rs.next()){
@@ -22,16 +22,16 @@ public classmInventoryDAO {
         return items;
     }
     //get low stock items
-    public List<InventoryItem> getLowStockItems() rhrows SQLException{
+    public List<InventoryItem> getLowStockItems() throws SQLException{
         List<InventoryItem> items = new ArrayList<>();
         String sql = "SELECT * FROM inventory WHERE quantity <= reorder_level ORDER BY item_name";
 
         try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.creatStatement();
+             Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
             
             while (rs.next()) {
-                item.add(mapResultSetToInventoryItem(rs));
+                items.add(mapResultSetToInventoryItem(rs));
             }
         }
         return items;
@@ -65,7 +65,7 @@ public classmInventoryDAO {
     }
 
     //helper method
-    private InventoryItem mapResultSetToInventoryItem(ResultSt rs) throws SQLException {
+    private InventoryItem mapResultSetToInventoryItem(ResultSet rs) throws SQLException {
         InventoryItem item = new InventoryItem();
         item.setInventoryId(rs.getInt("inventory_id"));
         item.setItemName(rs.getString("item_name"));
