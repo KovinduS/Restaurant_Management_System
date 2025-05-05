@@ -1,6 +1,6 @@
 package com.restaurant.dao;
 
-import com.restaurant.model.InventoryItems;
+import com.restaurant.model.InventoryItem;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
