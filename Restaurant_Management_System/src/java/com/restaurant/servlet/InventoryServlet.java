@@ -5,7 +5,7 @@
  */
 package com.restaurant.servlet;
 
-import com.restaurant.model.InventoryItems;
+import com.restaurant.model.InventoryItem;
 import com.restaurant.service.InventoryService;
 import java.io.IOException;
 import java.io.PrintWriter;
