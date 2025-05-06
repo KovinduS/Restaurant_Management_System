@@ -10,5 +10,5 @@ package com.restaurant.service;
  * @author Novaline
  */
 public class OrderService {
-    
+    private orderDAO orderDao;
 }
