@@ -2,35 +2,35 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>AuthServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.AuthServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.AuthServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DashboardServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.DashboardServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.DashboardServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>InventoryServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.InventoryServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.InventoryServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MenuCategoryServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.MenuCategoryServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.MenuCategoryServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MenuServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.MenuServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.MenuServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OrderServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.OrderServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.OrderServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TableServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.TableServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.TableServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UserManagementServlet</servlet-name>
-        <servlet-class>com.restaurant.servlet.UserManagementServlet</servlet-class>
+        <servlet-class>com.restaurant.controller.UserManagementServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AuthServlet</servlet-name>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.restaurant.servlet;
+package com.restaurant.controller;
 
 import com.restaurant.model.Order;
 import com.restaurant.model.OrderItem;
