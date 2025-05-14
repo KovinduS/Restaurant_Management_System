@@ -8,7 +8,7 @@ public class TableService {
     private TableDAO tableDao;
     
     public TableService() {
-        this.tableDao = new TableDA0();
+        this.tableDao = new TableDAO();
     }
     
     public List<RestaurantTable> getAllTables() {
@@ -22,16 +22,16 @@ public class TableService {
     
     public RestaurantTable getTableById(int tableId) {
         try {
-            return tableDao.getTableById(tableId);
+           return tableDao.getTableById(tableId);
         } catch (Exception e) {
-            e.printStackTrace() ;
+            e.printStackTrace();
             return null;
-        }
+       } 
     }
     
     public boolean updateTableStatus(int tableId, String status) {
-        try{
-            return tableDao.updateTableStatus(tableId,status);
+        try {
+            return tableDao.updateTableStatus(tableId, status);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -40,7 +40,7 @@ public class TableService {
     
     public boolean addTable(RestaurantTable table) {
         try {
-            return tableDao.addTable (table);
+            return tableDao.addTable(table);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
