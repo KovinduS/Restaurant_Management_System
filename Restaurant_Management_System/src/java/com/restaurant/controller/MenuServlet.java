@@ -1,86 +1,128 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.restaurant.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import com.restaurant.model.MenuItem;
+import com.restaurant.service.MenuService;
+
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
 
-/**
- *
- * @author Novaline
- */
+@WebServlet("/menu/*")
+
+
 public class MenuServlet extends HttpServlet {
+    private MenuService menuService;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MenuServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MenuServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    @Override
+    public void init() {
+        menuService = new MenuService();
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getPathInfo();
+
+        if (action == null || action.equals("/")) {
+            // List all menu items by category
+            request.setAttribute("categories", menuService.getAllCategories());
+            request.setAttribute("menuItems", menuService.getAllMenuItems());
+            request.getRequestDispatcher("/views/menu.jsp").forward(request, response);
+        } else if (action.equals("/new")) {
+            // Show form for new menu item
+            request.setAttribute("categories", menuService.getAllCategories());
+            request.getRequestDispatcher("/views/new-menu-item.jsp").forward(request, response);
+        } else {
+            // Fallback
+            response.sendRedirect(request.getContextPath() + "/menu");
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String action = request.getPathInfo();
+
+        if (action == null) {
+            response.sendRedirect(request.getContextPath() + "/menu");
+            return;
+        }
+
+        switch (action) {
+            case "/create":
+                handleCreate(request, response);
+                break;
+
+            case "/update-availability":
+                handleUpdateAvailability(request, response);
+                break;
+
+            default:
+                response.sendRedirect(request.getContextPath() + "/menu");
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    private void handleCreate(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String categoryIdStr = request.getParameter("categoryId");
+            String itemName = request.getParameter("itemName");
+            String description = request.getParameter("description");
+            String priceStr = request.getParameter("price");
+            String imagePath = request.getParameter("imagePath");
+            String isAvailableStr = request.getParameter("isAvailable");
 
+            // Validate required fields
+            if (categoryIdStr == null || itemName == null || priceStr == null) {
+                request.setAttribute("error", "Required fields are missing.");
+                request.setAttribute("categories", menuService.getAllCategories());
+                request.getRequestDispatcher("/views/new-menu-item.jsp").forward(request, response);
+                return;
+            }
+
+            MenuItem item = new MenuItem();
+            item.setCategoryId(Integer.parseInt(categoryIdStr));
+            item.setItemName(itemName);
+            item.setDescription(description != null ? description : "");
+            item.setPrice(Double.parseDouble(priceStr));
+            item.setImagePath(imagePath != null && !imagePath.isEmpty() ? imagePath : "food-5.jpg ");
+
+            item.setAvailable("true".equalsIgnoreCase(isAvailableStr) || "on".equalsIgnoreCase(isAvailableStr));
+
+            boolean success = menuService.addMenuItem(item);
+
+            if (success) {
+                response.sendRedirect(request.getContextPath() + "/menu");
+            } else {
+                request.setAttribute("error", "Failed to add menu item.");
+                request.setAttribute("categories", menuService.getAllCategories());
+                request.getRequestDispatcher("/views/new-menu-item.jsp").forward(request, response);
+            }
+
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "Invalid numeric value entered.");
+            request.setAttribute("categories", menuService.getAllCategories());
+            request.getRequestDispatcher("/views/new-menu-item.jsp").forward(request, response);
+        }
+    }
+
+    private void handleUpdateAvailability(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        try {
+            String itemIdStr = request.getParameter("itemId");
+            String isAvailableStr = request.getParameter("isAvailable");
+
+            if (itemIdStr != null && isAvailableStr != null) {
+                int itemId = Integer.parseInt(itemIdStr);
+                boolean isAvailable = Boolean.parseBoolean(isAvailableStr);
+
+                menuService.updateItemAvailability(itemId, isAvailable);
+            }
+        } catch (NumberFormatException e) {
+            // Log the error if necessary
+        }
+
+        response.sendRedirect(request.getContextPath() + "/menu");
+    }
 }
