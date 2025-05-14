@@ -1,6 +1,6 @@
 package com.restaurant.dao;
 
-import com.restaurant.model.InventoryItems;
+import com.restaurant.model.InventoryItem;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,7 @@ public class InventoryDAO {
     }
 
     //Add new inventory item
-    public boolean addInventoryItem(Inventory Item) throws SQLException {
+    public boolean addInventoryItem(InventoryItem item ) throws SQLException {
          String sql = "INSERT INTO inventory (item_name, quantity,unit,reorder_level) VALUES (?,?,?,?)";
          try (Connection conn = DBConnection.getConnection();
               PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -58,7 +58,7 @@ public class InventoryDAO {
             stmt.setString(1,item.getItemName());
             stmt.setDouble(2,item.getQuantity());
             stmt.setString(3,item.getUnit());
-            stmt.setDouble(4,item.getRecorderLevel());
+            stmt.setDouble(4,item.getReorderLevel());
 
             return stmt.executeUpdate() > 0;
         }
