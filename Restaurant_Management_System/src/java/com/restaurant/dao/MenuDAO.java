@@ -16,7 +16,7 @@ public class MenuDAO {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             
             
-            stmt.setSrting(1, category.getCategoryName());
+            stmt.setString(1, category.getCategoryName());
             stmt.setString(2, category.getDescription());
             
             return stmt.executeUpdate () > 0;
@@ -50,8 +50,8 @@ public class MenuDAO {
                  return stmt.executeUpdate() > 0;
              }
              
-         //delete category
-         public boolean deleteCategory(int categoryId) throws SQLException {
+        //delete category
+        public boolean deleteCategory(int categoryId) throws SQLException {
                  String sql = "DELETE FROM menu_categories WHERE category_id = ?";
                  try (Connection conn = DBConnection.getConnection();
                          PreparedStatement stmt = conn.prepareStatement(sql)) {

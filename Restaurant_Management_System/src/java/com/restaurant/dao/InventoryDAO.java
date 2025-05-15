@@ -38,7 +38,7 @@ public class InventoryDAO {
     }
   
     //update inventory item quantity
-    public boolean addInventoryQuantity(int inventoryId,double quantity) throws SQLException{
+    public boolean updateInventoryQuantity(int inventoryId, double quantity) throws SQLException {
         String sql = "UPDATE inventory SET quantity = ? WHERE inventory_id = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
