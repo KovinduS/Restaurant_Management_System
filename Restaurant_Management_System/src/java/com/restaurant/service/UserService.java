@@ -20,18 +20,18 @@ public class UserService {
         this.userDao = new UserDAO();
     }
     
-    public User authenticate(String username,String password){
+    public User authenticate (String username,String password){
         try{
-            return userDao.authenticate (username,password);
-        }catch (Exception e) {
+            return userDao.authenticate(username, password);
+        }catch (Exception e){
             e.printStackTrace();
             return null;
         }
     }
     
-    public boolean registerUser(User user ){
+    public boolean registetUser (User user){
         try{
-            return userDao.createUser (user);
+            return userDao.createUser(user);
         }catch(Exception e){
             e.printStackTrace();
             return false;
@@ -49,17 +49,17 @@ public class UserService {
     
     public boolean updateUserRole(int userId,String role){
         try{
-            return userDao.updateUserRole(userId,role);
+            return userDao.updateUserRole(userId, role);
         }catch(Exception e){
             e.printStackTrace();
             return false;
         }
     }
     
-    public boolean deleteUser( int userId){
+    public boolean deleteUser(int userId){
         try{
-            return userDao.deleteUser (userId);
-        }catch (Exception e){
+            return userDao.deleteUser(userId);
+        }catch(Exception e){
             e.printStackTrace();
             return false;
         }
