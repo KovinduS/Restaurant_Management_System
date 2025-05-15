@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>MaYa BaY - Add New User</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-        <style>
-            /* ===== Base Styles ===== */
+<head>
+    <meta charset="UTF-8">
+    <title>MaYa BaY - Add New User</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <style>
+        /* ===== Base Styles ===== */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #e0f7fa;
@@ -17,7 +15,8 @@
             margin: 0;
             padding: 0;
         }
-.container {
+
+        .container {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 2rem;
@@ -150,7 +149,8 @@
             border-left: 4px solid #d32f2f;
             border-radius: 6px;
         }
-         /* ===== Water Bubble Decorations ===== */
+
+        /* ===== Water Bubble Decorations ===== */
         .water-decoration {
             position: absolute;
             width: 100px;
@@ -179,144 +179,140 @@
                 width: 100%;
             }
         }
-        </style>
-    </head>
-    <body>
-        <div class="water-decoration"style="top:20%; left:10%;"></div>
-        <div clsass="water-decoration"style="bottom: 15%; right: 10%; transform: rotate(30deg);"></div>
-        
-        <jsp:include page="/views/header.jsp"/>
-        
-        <main class="container">
-            <div class="form-container">
-                <h1>Add New User</h1>
-                
-                <c:if test="${not empty error}">
-                    <div class="error">${error}</div>
-                    
-                </c:if>
-                    
-                    <form action="${pageContext.request.contextPath}/users/create" method="POST" id="userForm">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" required placeholder="Enter username">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email"required placeholder="Enter Email Address">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" required
-                                   placeholder="Create Password" onkeyup="checkPasswordStrength()">
-                            <div id="passwordStrength" class="password-strength"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="confirmPassord">Confirm Passsword</label>
-                            <label type="confirmpassword" id="confirmpassword" name="confirmpassword0"required
-                                placeholder="Confirm Password">
-                                <div id="passwordMatch" class="password-strength"></div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="fullName">Full Name</label>
-                            <input type="text" id="fullName" name="fullName" required placeholder="Enter full name">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="role">Role</label>
-                            <select is="role" name="role" required>
-                                <option value="">Select Role</option>
-                                <option value="admin">Admin</option>
-                                <option value="manager">Manager</option>
-                                <option value="staff">Staff</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-primary" id="submitBtn">Create User</button>
-                            <a href="${pageContext.request.contextPath}/users" class="btn btn-primary"> Cancel</a>
-                        </div>
-                    </form>
-            </div>
-        </main>
-                            <jsp:include page="/viwes/footer.jsp"/>
+    </style>
+</head>
+<body>
+    <div class="water-decoration" style="top:20%; left:10%;"></div>
+    <div class="water-decoration" style="bottom:15%; right:10%; transform:rotate(30deg);"></div>
     
-                            <script>
-                                function checkPasswordStrength(){
-                                    const password = document.getElementById('password').value;
-                                    const strengthText = document.getElementById('passwordstrength');
-                                    const submitBtn = document.getElementById('submitBtn');
-                                    
-                                    if password.length ===0){
-                                        strengthText.textContent='';
-                                        strengthText.className='password-strength';
-                                        return;
-                                    }
-                                    
-                      // check password strength
-                      left strength = 0;
-                      if (password.length>=8) strength++;
-                      if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
-                      if (password.match(/[0-9]/)) strength++;
-                      is (password.match (/[^a-zA-Z0-9]/))strength++;
-                      
-                      switch(strength){
-                        case 0;
-                        case 1;
-                             strengthText.textContent = 'weak - Include more characters, numbers, and symbols';
-                             strengthText.className = 'password-strength strength-weak';
-                             break;
-                              
-                        case 2;
-                            strengthText.textContent = 'Medium-could be stronger withmore variety';
-                            strengthText.className = 'password-strength strength-medium';
-                            break;
-                        
-                        case 3;
-                        case 4;
-                            strengthText.textContent = 'strong-Good password!';
-                            strengthText.className = 'password-strength strength-strong';
-                            break;
-                      }
-                      
-                      //check password match
-                      
-                      const confirmaPassword = document.getElementById('confirmPassword').value;
-                      const matchText = document.getElementById('passwordMatch');
-                      
-                      if (confirmPassword.length>0){
-                          if (password === confirmPassword){
-                              matchText.textContent = 'passwords match';
-                              matchText.className = 'password-strength strength-strong';
-                              submitBtn.disabled=false;
-                          }else{
-                              matchText.textContent = 'passwords do not match';
-                              matchText.className = 'password-strength strength-strong';
-                              submitBtn.disabled = true;
-                          }
-                      }else{
-                          matchText.textContent = '';
-                          matchText.className = 'password-strength'
-                    
-                                    }
-                                }
-                                
-                        document.getElementById('confirmPassword').addEventListener('keyup',checkpasswordStrength);
-                        
-                        document.getElementById('userForm').addEventListener('submit',function(e){
-                            const password = documemnt.getElementById('password').value;
-                            const confirmPassword = document.getElementById('confirmPassword').value;
-                            
-                            if (password !== confirmPassword) {
-                                e.preventDefault();
-                                alert('passwords do notmatch! Please make sure both password fields match.');
-                                document.getElementById('passwords').focus();
-                            }
-                        });
-                            </script>
-    </body>
-</html>
+    <jsp:include page="/views/header.jsp" />
+    
+    <main class="container">
+        <div class="form-container">
+            <h1>Add New User</h1>
+            
+            <c:if test="${not empty error}">
+                <div class="error">${error}</div>
+            </c:if>
+            
+            <form action="${pageContext.request.contextPath}/users/create" method="POST" id="userForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter email address">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required 
+                           placeholder="Create password" onkeyup="checkPasswordStrength()">
+                    <div id="passwordStrength" class="password-strength"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required 
+                           placeholder="Confirm password">
+                    <div id="passwordMatch" class="password-strength"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="manager">Manager</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Create User</button>
+                    <a href="${pageContext.request.contextPath}/users" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <jsp:include page="/views/footer.jsp" />
+    
+    <script>
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthText = document.getElementById('passwordStrength');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (password.length === 0) {
+                strengthText.textContent = '';
+                strengthText.className = 'password-strength';
+                return;
+            }
+            
+            // Check password strength
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            switch(strength) {
+                case 0:
+                case 1:
+                    strengthText.textContent = 'Weak - Include more characters, numbers, and symbols';
+                    strengthText.className = 'password-strength strength-weak';
+                    break;
+                case 2:
+                    strengthText.textContent = 'Medium - Could be stronger with more variety';
+                    strengthText.className = 'password-strength strength-medium';
+                    break;
+                case 3:
+                case 4:
+                    strengthText.textContent = 'Strong - Good password!';
+                    strengthText.className = 'password-strength strength-strong';
+                    break;
+            }
+            
+            // Check password match
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const matchText = document.getElementById('passwordMatch');
+            
+            if (confirmPassword.length > 0) {
+                if (password === confirmPassword) {
+                    matchText.textContent = 'Passwords match';
+                    matchText.className = 'password-strength strength-strong';
+                    submitBtn.disabled = false;
+                } else {
+                    matchText.textContent = 'Passwords do not match';
+                    matchText.className = 'password-strength strength-weak';
+                    submitBtn.disabled = true;
+                }
+            } else {
+                matchText.textContent = '';
+                matchText.className = 'password-strength';
+            }
+        }
+        
+        document.getElementById('confirmPassword').addEventListener('keyup', checkPasswordStrength);
+        
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match! Please make sure both password fields match.');
+                document.getElementById('password').focus();
+            }
+        });
+    </script>
+</body>
+</html> 
