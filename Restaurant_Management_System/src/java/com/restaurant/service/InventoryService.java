@@ -11,9 +11,9 @@ import java.util.List;
            this.inventoryDao = new InventoryDAO();
         }
 
-        public List<InventoryItem> getAllInventoryItems(){
+        public List<InventoryItem> getAllInventoryItem(){
            try {
-               return inventoryDao.getAllInventoryItems();
+               return inventoryDao.getAllInventoryItem();
            } catch (Exception e) {
                 e.printStackTrace();
                return null;
