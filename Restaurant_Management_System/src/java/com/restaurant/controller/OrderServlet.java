@@ -42,12 +42,26 @@ public class OrderServlet extends HttpServlet {
             // View single order
             int orderId = Integer.parseInt(request.getParameter("id"));
              request.setAttribute("order", orderService.getOrderById(orderId));
-              request.getRequestDispatcher("/views/order-details.jsp").forward(request, response);
-              } else if (action.equals("/new")) {
-                  // Show new order form
-                  request.getRequestDispatcher("/views/new-order.jsp").forward(request, response);
-         }
-    }
+              Order order = orderService.getOrderById(orderId);
+              
+              if (order != null) {
+                  // Set order details as attributes for the JSP
+                  request.setAttribute("orderId", order.getOrderId());
+                  request.setAttribute("customerName", order.getUserName());
+                  request.setAttribute("orderDate", order.getOrderDate());
+                  request.setAttribute("orderItems", order.getOrderItems());
+              }else{
+                  // Handle case where order is not found
+                  request.setAttribute("error", "Order not found");
+              }
+              
+              // Forward to the order details page
+               request.getRequestDispatcher("/views/order-details.jsp").forward(request, response);
+             } else if (action.equals("/new")) {
+                    // Show new order form
+                     request.getRequestDispatcher("/views/new-order.jsp").forward(request, response);
+             }
+    }  
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -92,20 +106,7 @@ public class OrderServlet extends HttpServlet {
                 request.setAttribute("error", "Failed to create order");
                 request.getRequestDispatcher("/views/new-order.jsp").forward(request, response);
             }
-            } else if (action.equals("/update-status")) {
-                // Update order status
-                int orderId = Integer.parseInt(request.getParameter("orderId"));
-                String status = request.getParameter("status");
-                
-                boolean success = orderService.updateOrderStatus(orderId, status);
-                if (success) {
-                    response.sendRedirect(request.getContextPath() + "/orders/view?id=" + orderId);
-                    } else {
-                    request.setAttribute("error", "Failed to update order status");
-                    Order order = orderService.getOrderById(orderId);
-                    request.setAttribute("order", order);
-                    request.getRequestDispatcher("/views/order-details.jsp").forward(request, response);
-                }
+            
         }
     }
 
