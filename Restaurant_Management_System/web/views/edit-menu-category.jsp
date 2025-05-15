@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -18,7 +18,7 @@
                 margin-bottom: lrem;
             }
             .form-group label{
-                display: black;
+                display: block;
                 margin-bottom:0.5rem;
                 font-weight: bold;
             }

@@ -36,7 +36,7 @@ public class InventoryServlet extends HttpServlet {
           
           if (action == null || action.equals("/")) {
               // List all inventory items
-              request.setAttribute("inventoryItems", inventoryService.getAllInventoryItems());
+              request.setAttribute("inventoryItems", inventoryService.getAllInventoryItem());
               request.setAttribute("lowStockItems", inventoryService.getLowStockItems());
               request.getRequestDispatcher("/views/inventory.jsp").forward(request, response);
               } else if (action.equals("/new")) {
