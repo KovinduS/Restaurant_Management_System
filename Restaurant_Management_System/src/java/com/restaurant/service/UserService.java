@@ -29,7 +29,7 @@ public class UserService {
         }
     }
     
-    public boolean registetUser (User user){
+    public boolean registerUser (User user){
         try{
             return userDao.createUser(user);
         }catch(Exception e){

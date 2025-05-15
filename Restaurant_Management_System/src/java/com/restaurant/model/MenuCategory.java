@@ -31,7 +31,7 @@ public class MenuCategory {
         this.categoryName = categoryName;
     }
     
-    public String getDesciption() {
+    public String getDescription() {
         return description;
     }
     
