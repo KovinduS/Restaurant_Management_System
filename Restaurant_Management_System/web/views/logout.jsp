@@ -1,94 +1,94 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta  charset="UTF-8">
-        <title>May Bay Restaurant - Logged Out</title>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
-            
-            body{
-               font-family: 'Quicksand', Arial, sans-serif;
-               margin: 0;
-               padding: 0;
-               display: flex;
-               justify-content: center;
-               align-items: center;
-               height: 100vh;
-               background: url('${pageContext.request.contextPath}/assets/images/cor1.png');
-               background-size: cover;
-               background-position: center;
-               background-attachment: fixed;
-               
-               position: relative;
-               overflow: hidden;
-            } 
-            
-             body::before,
-             body::after{
-                 content: '';
-                 position: absolute;
-                 border-radius: 50%;
-                 opacity: 0.4
-                 animation: float 15s infinite ease-in-out;  
-             }   
-             
-             body::before {
-                 width: 100px;
-                 height: 100px;
-                 background: radial-gradient(circle at 30% 30%, #ffffff, #7fdbff);
-                  bottom: -25px;
-                 left: 10%;
-                 animation-duration: 20s;
-             }
-             
-             body::after{
-                  width: 60px;
-                  height: 60px;
-                  background: radial-gradient(circle at 30% 30%, #ffffff, #7fdbff);
-                  bottom: -15px;
-                  right: 20%;
-                  animation-duration: 15s;
-                  animation-delay: 2s;
-             }
-             
-             @keyframes float{
-                 0%, 100% {
+<head>
+    <meta charset="UTF-8">
+    <title>Maya Bay Restaurant - Logged Out</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Quicksand', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('${pageContext.request.contextPath}/assets/images/cor1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* Creating bubbles with pseudo-elements */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        body::before {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #7fdbff);
+            bottom: -25px;
+            left: 10%;
+            animation-duration: 20s;
+        }
+        
+        body::after {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #7fdbff);
+            bottom: -15px;
+            right: 20%;
+            animation-duration: 15s;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
                 transform: translateY(0);
             }
-             50% {
-                 transform: translateY(-700px) translateX(30px);
-             } 
-         }
-         
-         
-         .bubble {
-             position: absolute;
-             border-radius: 50%;
-             background: radial-gradient(circle at 30% 30%, #ffffff, #7fdbff);
-             opacity: 0.3;
-             animation: float 25s infinite ease-in-out;
-         } 
-         
-         .bubble:nth-child(1){
-              width: 40px;
-              height: 40px;
-              left: 20%;
-              bottom: -10px;
-              animation-duration: 18s;
-         }
-         
-         .bubble:nth-child(2) {
-             width: 25px;
+            50% {
+                transform: translateY(-700px) translateX(30px);
+            }
+        }
+        
+        /* Additional bubbles */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #7fdbff);
+            opacity: 0.3;
+            animation: float 25s infinite ease-in-out;
+        }
+        
+        .bubble:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            left: 20%;
+            bottom: -10px;
+            animation-duration: 18s;
+        }
+        
+        .bubble:nth-child(2) {
+            width: 25px;
             height: 25px;
             left: 40%;
             bottom: -10px;
             animation-duration: 12s;
             animation-delay: 3s;
-         }
-         
-         .bubble:nth-child(3) {
+        }
+        
+        .bubble:nth-child(3) {
             width: 35px;
             height: 35px;
             left: 60%;
@@ -223,9 +223,21 @@
                              30% 70%, 
                              40% 30%, 
                              50% 60%, 
-                             c
-         
-                .seaweed:nth-child(2) {
+                             60% 20%, 
+                             70% 50%, 
+                             80% 30%, 
+                             100% 100%);
+            z-index: -1;
+            opacity: 0.6;
+        }
+        
+        .seaweed:nth-child(1) {
+            left: 5%;
+            height: 120px;
+            animation-delay: 1s;
+        }
+        
+        .seaweed:nth-child(2) {
             left: 8%;
             height: 85px;
             animation-delay: 2s;
@@ -298,9 +310,9 @@
             }
         }
     </style>
-    </head>
-    <body>
-        <!-- Decorative elements -->
+</head>
+<body>
+    <!-- Decorative elements -->
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
