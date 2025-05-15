@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
      <style>
         /* ===== Base Styles ===== */
@@ -35,13 +36,31 @@
         }
 
 >>>>>>> Stashed changes
+=======
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Base Styles ===== */
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            color: #003f5c;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+>>>>>>> Stashed changes
         .container {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 2rem;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -50,17 +69,23 @@
             margin-bottom: 1.5rem;
             font-size: 2.2rem;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             border-bottom:  2px solid #4dd0e1;
             padding-bottom: 0.5rem;
             font-weight: 600;
         }
         
 =======
+=======
+>>>>>>> Stashed changes
             border-bottom: 2px solid #4dd0e1;
             padding-bottom: 0.5rem;
             font-weight: 600;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         /* ===== Action Buttons ===== */
         .actions {
@@ -70,7 +95,11 @@
             align-items: center;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -90,6 +119,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         .btn:hover {
              background-color: #00838f;
@@ -98,6 +128,8 @@
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 
         .btn:hover {
             background-color: #00838f;
@@ -105,6 +137,9 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         /* ===== Table Grid ===== */
         .table-grid {
@@ -113,7 +148,11 @@
             gap: 1.5rem;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -129,17 +168,23 @@
             overflow: hidden;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         .table-card:hover {
             transform: translateY(-5px);
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 
         .table-card:hover {
             transform: translateY(-5px);
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         .table-card::before {
             content: '';
@@ -150,17 +195,23 @@
             height: 5px;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         .table-card.available::before {
             background-color: #4CAF50;
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 
         .table-card.available::before {
             background-color: #4CAF50;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         .table-card.occupied::before {
             background-color: #f44336;
@@ -169,6 +220,7 @@
         .table-card.reserved::before {
             background-color: #ff9800;
         }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         
         .table-card.out_of_service::before {
@@ -183,6 +235,8 @@
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 
         .table-card.out_of_service::before {
             background-color: #607d8b;
@@ -195,6 +249,9 @@
             color: #006064;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         .table-status {
             margin: 0.5rem 0;
@@ -206,7 +263,11 @@
             font-size: 0.9rem;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -215,7 +276,11 @@
             color: #2E7D32;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -229,7 +294,11 @@
             color: #EF6C00;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -257,7 +326,11 @@
             gap: 0.5rem;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -274,7 +347,11 @@
             gap: 0.3rem;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -283,17 +360,23 @@
             color: white;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         .btn-edit:hover {
             background-color: #00838f;
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 
         .btn-edit:hover {
             background-color: #00838f;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         .btn-occupy {
             background-color: #f44336;
@@ -309,17 +392,23 @@
             color: white;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         .btn-free:hover {
             background-color: #388E3C;
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 
         .btn-free:hover {
             background-color: #388E3C;
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         /* Loading spinner */
         .spinner {
@@ -332,17 +421,23 @@
             animation: spin 1s ease-in-out infinite;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
         
 =======
+=======
+>>>>>>> Stashed changes
 
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         /* Notification toast */
         .toast {
@@ -358,7 +453,11 @@
             z-index: 1000;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -373,9 +472,15 @@
             z-index: -1;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
         /* ===== Responsive Design ===== */
          @media (max-width: 768px) {
+=======
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+>>>>>>> Stashed changes
 =======
 
         /* ===== Responsive Design ===== */
@@ -390,7 +495,11 @@
             }
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
 =======
 
 >>>>>>> Stashed changes
@@ -423,6 +532,7 @@
     <main class="container">
         <h1><i class="fas fa-utensils"></i> Table Management</h1>
         
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
          <div class="actions">
             <a href="${pageContext.request.contextPath}/tables/new" class="btn">
@@ -584,6 +694,87 @@
                 });
                 
 >>>>>>> Stashed changes
+=======
+        <div class="actions">
+            <a href="${pageContext.request.contextPath}/tables/new" class="btn">
+                <i class="fas fa-plus"></i> Add New Table
+            </a>
+            <div class="search-filter">
+                <input type="text" id="tableSearch" placeholder="Search tables..." style="padding: 0.5rem; border-radius: 20px; border: 1px solid #ddd;">
+            </div>
+        </div>
+        
+        <div class="table-grid">
+            <c:forEach var="table" items="${tables}">
+                <div class="table-card ${table.status}" data-table-id="${table.tableId}">
+                    <h3 class="table-number">Table ${table.tableNumber}</h3>
+                    <p class="table-status">${table.status}</p>
+                    <p class="table-capacity"><i class="fas fa-chair"></i> Seats: ${table.capacity}</p>
+                    <p class="table-location"><i class="fas fa-map-marker-alt"></i> ${table.location}</p>
+                    
+                    <div class="table-actions">
+                        <a href="${pageContext.request.contextPath}/tables/edit?id=${table.tableId}" class="btn-sm btn-edit">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <c:choose>
+                            <c:when test="${table.status == 'occupied'}">
+                                <button class="btn-sm btn-free" onclick="updateStatus(${table.tableId}, 'available', this)">
+                                    <i class="fas fa-check"></i> Free
+                                </button>
+                            </c:when>
+                            <c:otherwise>
+                                <button class="btn-sm btn-occupy" onclick="updateStatus(${table.tableId}, 'occupied', this)">
+                                    <i class="fas fa-user-clock"></i> Occupy
+                                </button>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </main>
+    
+    <jsp:include page="/views/footer.jsp" />
+    
+    <script>
+        // CSRF token setup (if using Spring Security)
+        const csrfToken = "${_csrf.token}";
+        const csrfHeader = "${_csrf.headerName}";
+        
+        // Show toast notification
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.backgroundColor = isSuccess ? '#4CAF50' : '#f44336';
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Update table status with modern fetch API
+        async function updateStatus(tableId, status, buttonElement) {
+            if (!confirm(`Are you sure you want to change this table's status to ${status}?`)) {
+                return;
+            }
+            
+            // Show loading state
+            const originalText = buttonElement.innerHTML;
+            buttonElement.innerHTML = `<span class="spinner"></span> Processing...`;
+            buttonElement.disabled = true;
+            
+            try {
+                const response = await fetch('${pageContext.request.contextPath}/tables/update-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        [csrfHeader]: csrfToken
+                    },
+                    body: `tableId=${tableId}&status=${status}`
+                });
+                
+>>>>>>> Stashed changes
                 if (response.ok) {
                     showToast('Table status updated successfully!');
                     setTimeout(() => {
@@ -621,7 +812,11 @@
             });
         });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     </script>    
+=======
+    </script>
+>>>>>>> Stashed changes
 =======
     </script>
 >>>>>>> Stashed changes
