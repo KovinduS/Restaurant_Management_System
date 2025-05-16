@@ -257,13 +257,13 @@
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-/*            display: flex;*/
+            display: flex;
             flex-direction: column;
             align-items: center;
         }
         
         .footer-links {
-/*            display: flex;*/
+            display: flex;
             margin-bottom: 1rem;
         }
         
@@ -358,17 +358,8 @@
             </div>
         </div>
     </section>
-        <footer>
-     <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-             
-            </div>
-            <p class="footer-text"> &copy; <%= new java.util.Date().getYear() + 1900 %> Maya Bay Restaurant | <%= new java.util.Date() %></p>
-        </div>
-
-    </footer>
+        
+                <jsp:include page="/views/footer.jsp" />
 
     <script>
         // Image Carousel Functionality
