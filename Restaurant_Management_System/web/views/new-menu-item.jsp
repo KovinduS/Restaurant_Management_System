@@ -150,7 +150,7 @@
                     <div class="error">${error}</div>
                 </c:if>
             
-                    <form action="${pageContext.request.contextPath}/menu/create" method="post" enctype="multipart/form-data">
+                    <form action="${pageContext.request.contextPath}/menu/create" method="post">
                          <div class="form-group">
                              <label for="itemName">Item Name</label>
                              <input type="text" id="itemName" name="itemName" required placeholder="Enter item name">

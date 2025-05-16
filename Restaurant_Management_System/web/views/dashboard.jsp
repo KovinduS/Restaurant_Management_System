@@ -66,7 +66,7 @@
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 725;
             transition: all 0.3s ease;
         }
