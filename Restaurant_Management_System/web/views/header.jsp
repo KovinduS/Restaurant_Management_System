@@ -4,6 +4,7 @@
     <style>
           /* ===== Header ===== */
         header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #006064, #00838f);
     color: white;
     padding: 1rem 2rem;
@@ -20,6 +21,10 @@
     justify-content: space-between;
     align-items: center;
               }
+               /* Logo styling with left positioning */
+        .logo {
+            margin-right: auto; /* Pushes the logo to the left */
+        }
 
        header h1 {
            font-size: 2rem;
@@ -32,7 +37,9 @@
          header h1 .bay {
                color: #64dfdf;
          }
-
+          header h1 .maya {
+            color: #ffffff;
+        }
         /* ===== Navigation ===== */
         nav ul {
             list-style-type: none;
@@ -58,9 +65,9 @@
     </style>
     <header>
         <div class="header-content">
-           <div class="header-content">
-           <h1><span class="maya">MaYa</span> <span class="bay">BaY</span></h1>  
-        </div>
+          <div class="logo">
+                <h1><span class="maya">MaYa</span> <span class="bay">BaY</span></h1>
+            </div>
             <nav>
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/dashboard">Dashboard</a></li>
