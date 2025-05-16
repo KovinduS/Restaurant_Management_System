@@ -20,36 +20,39 @@
 
         /* ===== Header ===== */
        header {
-    background: linear-gradient(to right, #006064, #00838f);
-    color: white;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Updated Logo Font Styling */
-header h1 {
-           font-size: 2rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #006064, #00838f);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        /* Logo styling with left positioning */
+        .logo {
+            margin-right: auto; /* Pushes the logo to the left */
+        }
+        header h1 {
+            font-size: 2rem;
             font-weight: bold;
             color: #fff;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-
-header h1 .bay {
-    color: #64dfdf;
-    
-}
+            margin: 0; /* Remove default margin */
+        }
+        header h1 .bay {
+            color: #64dfdf;
+        }
+        header h1 .maya {
+            color: #ffffff;
+        }
         /* ===== Navigation ===== */
         nav ul {
             list-style-type: none;
@@ -58,16 +61,14 @@ header h1 .bay {
             display: flex;
             gap: 1rem;
         }
-
         nav ul li a {
             color: white;
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-weight: 500;
+            font-weight: 800;
             transition: all 0.3s ease;
         }
-
         nav ul li a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
