@@ -26,7 +26,7 @@
             padding: 0 2rem;
         }
 
-        h1 {
+        .container h1 {
             color: #006064;
             margin-bottom: 1.5rem;
             font-size: 2.2rem;
