@@ -3,16 +3,19 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 0.002rem 0;
+            padding: 0.002rem;
             background-color: #006064;
             color: white;
-            margin-top: 2rem;
+            position: fixed;
+            bottom: 0;
             width: 100%;
         }
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+         /*   display: flex;   */
+            flex-direction: column;
+            align-items: center;
         }
         
         .footer-links {
