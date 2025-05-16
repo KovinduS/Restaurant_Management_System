@@ -66,7 +66,8 @@
             text-decoration: none;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-weight: 800;
+            font-size: 1.5rem;
+            font-weight: 725;
             transition: all 0.3s ease;
         }
         nav ul li a:hover {

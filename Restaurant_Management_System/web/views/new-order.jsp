@@ -23,7 +23,7 @@
         border: 1px solid #b2ebf2;
     }
     
-    h1 {
+   .container h1 {
         color: #006064;
         margin-bottom: 1.5rem;
         border-bottom: 2px solid #4dd0e1;

@@ -220,7 +220,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Order Details</h2>
+        <h2>MaYa BaY - Order Details</h2>
         
         <div class="order-info">
             <p><strong>Order ID:</strong> ${orderId}</p>

@@ -33,7 +33,7 @@
             margin: 0 auto;
         }
         
-        h1 {
+       .container h1 {
             color: #006064;
             margin-bottom: 1.5rem;
             font-size: 2rem;

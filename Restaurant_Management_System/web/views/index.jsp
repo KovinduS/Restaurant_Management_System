@@ -257,13 +257,13 @@
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
+/*            display: flex;*/
             flex-direction: column;
             align-items: center;
         }
         
         .footer-links {
-            display: flex;
+/*            display: flex;*/
             margin-bottom: 1rem;
         }
         
