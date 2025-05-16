@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : May 15, 2025, 10:07:10 PM
-    Author     : ASUS
---%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
