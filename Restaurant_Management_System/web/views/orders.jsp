@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib uri= "http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<DOCTYPE html>
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <title>MaYa BaY - Order Management </title>
-            <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
-            <style>
-                  /* ===== Base Styles ===== */
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MaYa BaY - Order Management</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/style.css">
+    <style>
+        /* ===== Base Styles ===== */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #e0f7fa;
@@ -23,7 +22,7 @@
             padding: 2rem;
         }
 
-        h1 {
+        .container h1 {
             color: #006064;
             margin-bottom: 1.5rem;
             font-size: 2.2rem;
@@ -201,92 +200,94 @@
                 font-size: 0.9rem;
             }
         }
+    </style>
+</head>
+<body>
+    <jsp:include page="/views/header.jsp" />
+    
+    <main class="container">
+        <h1>Order Management</h1>
+        
+        <div class="actions">
+            <a href="${pageContext.request.contextPath}/orders/new" class="btn">
+                <i class="fas fa-plus"></i> Create New Order
+            </a>
+        </div>
+        
+        <div class="order-status-tabs">
+            <button class="tab active" data-status="all">All Orders</button>
+            <button class="tab" data-status="pending">Pending</button>
+            <button class="tab" data-status="preparing">Preparing</button>
+            <button class="tab" data-status="ready">Ready</button>
+            <button class="tab" data-status="served">Served</button>
+            <button class="tab" data-status="paid">Paid</button>
+            <button class="tab" data-status="cancelled">Cancelled</button>
+        </div>
+        
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Table</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="order" items="${orders}">
+                    <tr data-status="${order.status}">
+                        <td>#${order.orderId}</td>
+                        <td>${order.tableNumber}</td>
+                        <td><span class="status-badge ${order.status}">${order.status}</span></td>
+                        <td>$${order.totalAmount}</td>
+                        <td>${order.orderDate}</td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/orders/view?id=${order.orderId}" class="btn-sm btn-view">View</a>
+                            <c:if test="${order.status == 'pending' || order.status == 'preparing'}">
+                                <a href="${pageContext.request.contextPath}/orders/update?id=${order.orderId}" class="btn-sm btn-update">Update</a>
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </main>
+    
+    <jsp:include page="/views/footer.jsp" />
+    
+    <script>
+        // Tab filtering functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const status = this.dataset.status;
                 
-            </style>
-        </head>
-        <body>
-            <jsp:include page="/views/header.jsp"/>
-            
-            <main class="container">
-                <h1>Order Management</h1>
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
                 
-                <div class="action">
-                    <a href="${pageContext.request.contextPath}/oreders/new" class="btn">
-                        <i class="fas fa-plus"></i>Create New Order
-                    </a>
-                </div>
-                        
-                        <div class="order-status-tabs">
-                            <button class="tab active"  data-status="all">All Orders</button>
-                            <button class="tab" data-ststus="pending">Pending</button>
-                            <button class="tab" data-status="preparing">Preparing</button>
-                            <button class="tab" data-ststus="ready">Ready></button>
-                            <button class="tab" data-status="served">Served</button>
-                            <button class="tab" data-ststus="paid">Paid</button>
-                            <button class="tab" data-ststus="canselled">Cancelled</button>
-                            
-                        </div>
-                        <table class="oredr-table">
-                            <thead>
-                                <tr>
-                                    <th>Order Id</th>
-                                    <th>Table</th>
-                                    <th>Status</th>
-                                    <th>Total</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="oredr" items="${orders}">
-                                    <tr data-status="${order.ststus}">
-                                        <td>#${order.order.Id}</td>
-                                        <td>${order.tableNumber}</td>
-                                        <td><span class="ststus-badge ${order.ststus}">${order.ststus}</span></td>
-                                        <td>$${order.totalAmount}</td>
-                                        <td>${order.orderDate}</td>
-                                        <td>
-                                            <a href="${pageContext.request.contextPath}/orders/view?id=${order.orderId}" class="btn-sm btn-view">View</a>
-                                            <c:if test="${order.status == 'pading'|| order.ststus == 'preparing'}">
-                                                <a href="${pageContext.request.contextPath}/orders/update?id=${order.orderId}" class="btn-sm btn-update"Update</a>
-                                            </c:if>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-            </main>
-                    <jsp:include page="/views/footer.jsp"/>
-                    
-                    <script>
-                        //Tab filering funtionality
-                        document.querySelectorAll('.tab').forEach(tab =>){
-                            tab.addEventListner('click',function() {
-                                const status = this.dataset.status;
-                                
-                                //Update active tab
-                                document.querySelectorAll('.order-table tbody tr').forEach(row =>){
-                                    if (status === 'all' || row.dataset.status === status){
-                                        row.style.display ='';
-                                    }else{
-                                        row.style.display = '';
-                                    }else{
-                                        row.style.display = 'none';
-                                    }
-                                });
-                            });
-                        });
-                        
-                        //Add some visual effects
-                        document.querySelectorAll('.order-table tbody tr').forEach(row =>){
-                            row.addEventListener('mouseenter',function(){
-                                this.style.transform = 'translateX(5px)';
-                                this.style.transition = 'transform 0.2s ease';
-                            });
-                            row.addEventListener('mouseleave',function(){
-                                this.style.transform = '';
-                            });
-                        });
-                    </script>
-        </body>
-    </html>
-                    
+                // Filter orders
+                document.querySelectorAll('.order-table tbody tr').forEach(row => {
+                    if (status === 'all' || row.dataset.status === status) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add some visual effects
+        document.querySelectorAll('.order-table tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+                this.style.transition = 'transform 0.2s ease';
+            });
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html> 
