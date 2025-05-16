@@ -310,18 +310,16 @@
                         <a href="${pageContext.request.contextPath}/tables/edit?id=${table.tableId}" class="btn-sm btn-edit">
                             <i class="fas fa-edit"></i> Edit
                         </a>
-                        <c:choose>
-                            <c:when test="${table.status == 'occupied'}">
-                                <button class="btn-sm btn-free" onclick="updateStatus(${table.tableId}, 'available', this)">
-                                    <i class="fas fa-check"></i> Free
+                        <c:if test="${table.status != 'occupied'}">
+                                <button class="btn-sm btn-free" onclick="updateStatus(${table.tableId}, 'occupied', this)">
+                                    <i class="fas fa-check"></i> Occupy
                                 </button>
-                            </c:when>
-                            <c:otherwise>
-                                <button class="btn-sm btn-occupy" onclick="updateStatus(${table.tableId}, 'occupied', this)">
-                                    <i class="fas fa-user-clock"></i> Occupy
+                            </c:if>
+                            <c:if test="${table.status == 'occupied'}">
+                                <button class="btn-sm btn-occupy" onclick="updateStatus(${table.tableId}, 'available', this)">
+                                    <i class="fas fa-user-clock"></i> Free
                                 </button>
-                            </c:otherwise>
-                        </c:choose>
+                            </c:if>
                     </div>
                 </div>
             </c:forEach>
@@ -331,79 +329,28 @@
     <jsp:include page="/views/footer.jsp" />
     
     <script>
-        // CSRF token setup (if using Spring Security)
-        const csrfToken = "${_csrf.token}";
-        const csrfHeader = "${_csrf.headerName}";
-        
-        // Show toast notification
-        function showToast(message, isSuccess = true) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.style.backgroundColor = isSuccess ? '#4CAF50' : '#f44336';
-            toast.style.display = 'block';
+       
+        function updateStatus(tableId, status) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '${pageContext.request.contextPath}/tables/update-status';
             
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
+            const tableIdInput = document.createElement('input');
+            tableIdInput.type = 'hidden';
+            tableIdInput.name = 'tableId';
+            tableIdInput.value = tableId;
+            form.appendChild(tableIdInput);
+            
+            const statusInput = document.createElement('input');
+            statusInput.type = 'hidden';
+            statusInput.name = 'status';
+            statusInput.value = status;
+            form.appendChild(statusInput);
+            
+            document.body.appendChild(form);
+            form.submit();
         }
-        
-        // Update table status with modern fetch API
-        async function updateStatus(tableId, status, buttonElement) {
-            if (!confirm(`Are you sure you want to change this table's status to ${status}?`)) {
-                return;
-            }
-            
-            // Show loading state
-            const originalText = buttonElement.innerHTML;
-            buttonElement.innerHTML = `<span class="spinner"></span> Processing...`;
-            buttonElement.disabled = true;
-            
-            try {
-                const response = await fetch('${pageContext.request.contextPath}/tables/update-status', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        [csrfHeader]: csrfToken
-                    },
-                    body: `tableId=${tableId}&status=${status}`
-                });
-                
-                if (response.ok) {
-                    showToast('Table status updated successfully!');
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1000);
-                } else {
-                    const error = await response.text();
-                    showToast(`Error: ${error || 'Failed to update table status'}`, false);
-                    buttonElement.innerHTML = originalText;
-                    buttonElement.disabled = false;
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showToast('An error occurred while updating the table', false);
-                buttonElement.innerHTML = originalText;
-                buttonElement.disabled = false;
-            }
-        }
-        
-        // Simple table search functionality
-        document.getElementById('tableSearch').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const tableCards = document.querySelectorAll('.table-card');
-            
-            tableCards.forEach(card => {
-                const tableNumber = card.querySelector('.table-number').textContent.toLowerCase();
-                const location = card.querySelector('.table-location').textContent.toLowerCase();
-                const status = card.querySelector('.table-status').textContent.toLowerCase();
-                
-                if (tableNumber.includes(searchTerm) || location.includes(searchTerm) || status.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+    
     </script>
 </body>
 </html>
