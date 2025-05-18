@@ -1,83 +1,126 @@
-Database ( MySQL ) code . 
+# 🌊🍽️ MaYa BaY - Underwater Restaurant Management System 🐠🐟
 
-CREATE DATABASE restaurant_db;
-USE restaurant_db;
+Welcome to **MaYa BaY**, an immersive **Underwater Restaurant Management System** developed to streamline restaurant operations with a sleek and secure interface. This system enables **role-based access**, **real-time order and inventory tracking**, and a dynamic dashboard to manage your underwater culinary paradise efficiently.
 
--- Users table for authentication
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    full_name VARCHAR(100) NOT NULL,
-    role ENUM('admin', 'manager', 'staff') NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
--- Tables in the restaurant
-CREATE TABLE restaurant_tables (
-    table_id INT AUTO_INCREMENT PRIMARY KEY,
-    table_number VARCHAR(20) NOT NULL UNIQUE,
-    capacity INT NOT NULL,
-    status ENUM('available', 'occupied', 'reserved', 'out_of_service') DEFAULT 'available',
-    location VARCHAR(100)
-);
 
--- Menu Categories
-CREATE TABLE menu_categories (
-    category_id INT AUTO_INCREMENT PRIMARY KEY,
-    category_name VARCHAR(50) NOT NULL,
-    description TEXT
-);
+---
 
--- Menu Items
-CREATE TABLE menu_items (
-    item_id INT AUTO_INCREMENT PRIMARY KEY,
-    category_id INT,
-    item_name VARCHAR(100) NOT NULL,
-    description TEXT,
-    price DECIMAL(10,2) NOT NULL,
-    image_path VARCHAR(255),
-    is_available BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (category_id) REFERENCES menu_categories(category_id)
-);
+## ✨ Features
 
--- Orders
-CREATE TABLE orders (
-    order_id INT AUTO_INCREMENT PRIMARY KEY,
-    table_id INT,
-    user_id INT,
-    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('pending', 'preparing', 'ready', 'served', 'paid', 'cancelled') DEFAULT 'pending',
-    total_amount DECIMAL(10,2),
-    notes TEXT,
-    FOREIGN KEY (table_id) REFERENCES restaurant_tables(table_id),
-    FOREIGN KEY (user_id) REFERENCES users(user_id)
-);
+👨‍🍳 Role-Based Access Control
 
--- Order Items
-CREATE TABLE order_items (
-    order_item_id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    item_id INT,
-    quantity INT NOT NULL,
-    special_requests TEXT,
-    price_at_order DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (item_id) REFERENCES menu_items(item_id)
-);
+- Admin: Full system control
 
--- Inventory
-CREATE TABLE inventory (
-    inventory_id INT AUTO_INCREMENT PRIMARY KEY,
-    item_name VARCHAR(100) NOT NULL,
-    quantity DECIMAL(10,2) NOT NULL,
-    unit VARCHAR(20) NOT NULL,
-    reorder_level DECIMAL(10,2),
-    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
+- Manager: Staff management, inventory, reporting
 
--- Insert admin user
-INSERT INTO users (username, password, email, full_name, role) 
-VALUES ('admin', 'admin@123', 'admin@restaurant.com', 'Admin User', 'admin');
--- Password: admin@123
+- Staff: Order processing, table management
+
+---
+
+✨ Core Functionality
+
+- Real-time table management
+
+- Digital menu with underwater-themed dishes
+
+- Inventory tracking for seafood specialties
+
+- Staff scheduling for shift rotations
+
+- Customer relationship management
+
+- Beautiful underwater-themed UI
+
+---
+
+## 🛠️ Tech Stack
+
+**Backend**  
+`Java` | `Javax` | `MySQL`
+
+**Frontend**  
+`JSP` | `CSS` | `JavaScript`
+
+**Tools & Server**  
+`Apache Tomcat 8.1`
+
+---
+
+## 🚀 Quick Start
+
+### ✅ Prerequisites
+
+- ☕ Java 8.1+
+- 🐬 MySQL Database
+- 🛰️ Apache Tomcat 8.1
+- 🌐 Modern Web Browser (Chrome)
+
+---
+
+### 🧭 Installation
+
+01) Clone the repository:
+   
+- git clone : https://github.com/your-repo/maya-bay-restaurant.git
+
+02) Import the SQL script to MySQL:
+
+- Database : https://nsbm365-my.sharepoint.com/:u:/g/personal/mwkssamarasekara_students_nsbm_ac_lk/EXi95suP_W9PoCMn51HwWp4BzMnX2M0pV4vTuSY4ekSFNQ?e=l1epft
+
+
+03) Build the project using JavaEE:
+
+
+04) Deploy the WAR file to Tomcat
+   
+
+6) Access the application at http://localhost:8080/maya-bay
+
+  ---
+
+  🔒 Security Best Practices
+  
+- All passwords are hashed using BCrypt
+
+- CSRF protection enabled
+
+- SQL injection prevention with prepared statements
+
+- Session timeout after 30 minutes of inactivity
+
+- Role-based access control for all sensitive operations
+
+    ---
+
+🤝 Contribution
+
+We welcome contributions from the community! Please follow these steps:
+
+- Fork the repository
+
+- Create a feature branch (git checkout -b feature/amazing-feature)
+
+- Commit your changes (git commit -m 'Add some amazing feature')
+
+ - Push to the branch (git push origin feature/amazing-feature)
+
+- Open a Pull Request
+
+  ---
+
+📜 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+📬 Contact
+For any questions or support, please contact our team:
+
+Email: sanjumalsamarasekara2003@gmail.com
+
+GitHub: @KovinduS
+
+---
+
+<div align="center"> <img src="https://via.placeholder.com/150/1e90ff/ffffff?text=MB" alt="MaYa BaY Logo" width="100"> <p>Dive into exceptional dining management with MaYa BaY!</p> </div>
