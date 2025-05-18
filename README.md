@@ -2,7 +2,9 @@
 
 Welcome to **MaYa BaY**, an immersive **Underwater Restaurant Management System** developed to streamline restaurant operations with a sleek and secure interface. This system enables **role-based access**, **real-time order and inventory tracking**, and a dynamic dashboard to manage your underwater culinary paradise efficiently.
 
+---
 
+![image alt](https://github.com/KovinduS/Restaurant_Management_System/blob/1005478682a222d30c18221e0ec2bdbde6e6abbb/index.png)
 
 ---
 
@@ -77,7 +79,7 @@ Welcome to **MaYa BaY**, an immersive **Underwater Restaurant Management System*
 
 6) Access the application at http://localhost:8080/maya-bay
 
-  ---
+---
 
   🔒 Security Best Practices
   
@@ -91,7 +93,7 @@ Welcome to **MaYa BaY**, an immersive **Underwater Restaurant Management System*
 
 - Role-based access control for all sensitive operations
 
-    ---
+---
 
 🤝 Contribution
 
@@ -107,7 +109,9 @@ We welcome contributions from the community! Please follow these steps:
 
 - Open a Pull Request
 
-  ---
+- See our [Contribution Guidelines](https://github.com/KovinduS/Restaurant_Management_System/graphs/contributors) for details.
+
+---
 
 📜 License
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -123,4 +127,4 @@ GitHub: @KovinduS
 
 ---
 
-<div align="center"> <img src="https://via.placeholder.com/150/1e90ff/ffffff?text=MB" alt="MaYa BaY Logo" width="100"> <p>Dive into exceptional dining management with MaYa BaY!</p> </div>
+<div align="center">  <p>Dive into exceptional dining management with MaYa BaY!</p> MaYa BaY © 2025 </div>
